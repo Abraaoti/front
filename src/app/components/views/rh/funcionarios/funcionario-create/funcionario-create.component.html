@@ -1,0 +1,96 @@
+<div mat-dialog-title>
+    <h1>add nova funcionário</h1>
+</div >
+
+
+<form [formGroup]="funForm" (ngSubmit)="onCreate()"> 
+
+
+    <div mat-dialog-content class="content">
+        <div class="row">        
+            <mat-form-field appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nome" type="text"    placeholder="Ex. informática">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Sobrenome</mat-label>
+                <input matInput formControlName="sobrenome" type="text"     placeholder="Ex. informática">
+            </mat-form-field>
+
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Nascimento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="nascimento"  >
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>CPF</mat-label>
+                <input matInput formControlName="cpf" type="text"      placeholder="Ex. informática">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>RG</mat-label>
+                <input matInput formControlName="rg" type="text"     placeholder="Ex. informática">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Passaporte</mat-label>
+                <input matInput formControlName="passaporte" type="text"     placeholder="Ex. informática">
+            </mat-form-field>
+
+        </div>
+
+        <div class="row">  
+            <mat-form-field appearance="outline">
+                <mat-label>Mãe</mat-label>
+                <input matInput formControlName="mae" type="text"      placeholder="Ex. informática">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Pai</mat-label>
+                <input matInput formControlName="pai" type="text"   name="pai"   placeholder="Ex. informática">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Naturalidade</mat-label>
+                <input matInput formControlName="naturalidade" type="text"     placeholder="Ex. informática">
+            </mat-form-field>
+        </div>
+        <div class="row">
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Matrícula</mat-label>
+                <input matInput formControlName="matricula" type="text"     placeholder="Ex. informática">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Salário</mat-label>
+                <input matInput formControlName="salario" type="text"     placeholder="00.888">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>selecione o estado civil</mat-label>
+                <mat-select formControlName="estado_civil">
+                    <mat-option *ngFor="let estado_civil of estado_civil" [value]="estado_civil">{{estado_civil}}
+
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-radio-group aria-label="Selecione o genero" formControlName="genero">
+                <mat-label>Genero</mat-label>
+                <mat-radio-button *ngFor="let genero of generos" [value]="genero">{{genero}}</mat-radio-button>
+
+            </mat-radio-group>            
+
+        </div>     
+
+
+
+    </div>
+     <div mat-dialog-actions class="action">
+            <button mat-raised-button type="button" [mat-dialog-close]="false">Cancelar</button>
+            <button mat-raised-button color="primary" type="submit">{{data ? 'Atualizar': 'Salvar'}}</button>
+        </div>
+
+</form>
