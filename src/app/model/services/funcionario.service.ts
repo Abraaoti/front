@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { IFuncionario } from '../entidades/funcionario';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FuncionarioService {
-
-    funcionarioURL = 'https://app-sg.herokuapp.com/api/funcionario/';
+ funcionarioURL = environment.apiUrl +"api/funcionario/"
+   // funcionarioURL = 'https://app-sg.herokuapp.com/api/funcionario/';
     constructor(private http: HttpClient, private _sbar: MatSnackBar) { }
 
 
@@ -31,8 +32,8 @@ export class FuncionarioService {
 
         });
     }
-    update(id: number, funcionario: IFuncionario): Observable<any> {
-        return this.http.put(this.funcionarioURL + 'update/${id}', funcionario);
+    update(id: number, funcionario: IFuncionario): Observable<IFuncionario> {
+        return this.http.put<IFuncionario>(this.funcionarioURL + 'update/${id}', funcionario);
     }
 
     delete(id: number): Observable<any> {
