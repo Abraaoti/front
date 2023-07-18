@@ -47,6 +47,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
+import { PerfilCreateComponent } from './dp/components/views/perfis/perfil-create/perfil-create.component';
+import { PerfilReadComponent } from './dp/components/views/perfis/perfil-read/perfil-read.component';
 
 @NgModule({
     declarations: [
@@ -72,6 +74,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         LocalDateTimePipe,
         FuncionarioDeleteComponent,
         FuncionarioUpdateComponent,
+        PerfilCreateComponent,
+        PerfilReadComponent,
     ],
     imports: [
         BrowserModule,

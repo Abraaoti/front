@@ -9,7 +9,7 @@ import { IFuncionario } from '../entidades/funcionario';
     providedIn: 'root'
 })
 export class FuncionarioService {
- funcionarioURL = environment.apiUrl +"api/funcionario/"
+ funcionarioURL = environment.apiUrl + "api/pessoa/"
    // funcionarioURL = 'https://app-sg.herokuapp.com/api/funcionario/';
     constructor(private http: HttpClient, private _sbar: MatSnackBar) { }
 
