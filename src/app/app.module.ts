@@ -21,9 +21,6 @@ import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './components/views/home/home.component';
 import { CargoReadComponent } from './components/views/rh/cargos/cargo-read/cargo-read.component';
 import { PessoaReadComponent } from './components/views/rh/pessoas/pessoa-read/pessoa-read.component';
-import { CategoriaReadComponent } from './components/views/suprimento/categorias/categoria-read/categoria-read.component';
-import { FornecedorReadComponent } from './components/views/suprimento/fornecedores/fornecedor-read/fornecedor-read.component';
-import { ProdutoReadComponent } from './components/views/suprimento/produtos/produto-read/produto-read.component';
 import { ContaCreateComponent } from './components/views/financeiro/contas/conta-create/conta-create.component';
 import { ContaPagarComponent } from './components/views/financeiro/contas/conta-pagar/conta-pagar.component';
 import { ContaReceberComponent } from './components/views/financeiro/contas/conta-receber/conta-receber.component';
@@ -31,7 +28,6 @@ import { UsuarioCreateComponent } from './components/views/usuarios/usuario-crea
 import { UsuarioReadComponent } from './components/views/usuarios/usuario-read/usuario-read.component';
 import { UsuarioUpdateComponent } from './components/views/usuarios/usuario-update/usuario-update.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CategoriaCreateComponent } from './components/views/suprimento/categorias/categoria-create/categoria-create.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FuncionarioCreateComponent } from './components/views/rh/funcionarios/funcionario-create/funcionario-create.component';
@@ -47,8 +43,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
-import { PerfilCreateComponent } from './dp/components/views/perfis/perfil-create/perfil-create.component';
-import { PerfilReadComponent } from './dp/components/views/perfis/perfil-read/perfil-read.component';
+import { DepartamentoCreateComponent } from './components/views/departamento/departamento-create/departamento-create.component';
+import { DepartamentoReadComponent } from './components/views/departamento/departamento-read/departamento-read.component';
 
 @NgModule({
     declarations: [
@@ -59,23 +55,22 @@ import { PerfilReadComponent } from './dp/components/views/perfis/perfil-read/pe
         HomeComponent,
         CargoReadComponent,
         PessoaReadComponent,
-        CategoriaReadComponent,
-        FornecedorReadComponent,
-        ProdutoReadComponent,
+       
         ContaCreateComponent,
         ContaPagarComponent,
         ContaReceberComponent,
         UsuarioCreateComponent,
         UsuarioReadComponent,
         UsuarioUpdateComponent,
-        CategoriaCreateComponent,
         FuncionarioCreateComponent,
         FuncionarioReadComponent,
         LocalDateTimePipe,
         FuncionarioDeleteComponent,
         FuncionarioUpdateComponent,
-        PerfilCreateComponent,
-        PerfilReadComponent,
+      
+        DepartamentoCreateComponent,
+        DepartamentoReadComponent,
+      
     ],
     imports: [
         BrowserModule,

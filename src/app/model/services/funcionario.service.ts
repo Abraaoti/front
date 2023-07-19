@@ -19,6 +19,19 @@ export class FuncionarioService {
         //const url = `${baseUrl}/lista`;
         return this.http.get<IFuncionario[]>(this.funcionarioURL + 'lista');
     }
+    genero(): Observable<string[]> {
+        //const url = `${baseUrl}/lista`;
+        return this.http.get<string[]>(this.funcionarioURL + 'generos');
+    }
+    estadoCivil(): Observable<string[]> {
+        //const url = `${baseUrl}/lista`;
+        return this.http.get<string[]>(this.funcionarioURL + 'estadoCivil');
+    }
+    departamento(): Observable<string[]> {
+        //const url = `${baseUrl}/lista`;
+        return this.http.get<string[]>(this.funcionarioURL + 'departamentos');
+    }
+    
 
     create(funcionario: IFuncionario): Observable<IFuncionario> {
         // const url  = `${baseUrl}/create`;
@@ -33,7 +46,7 @@ export class FuncionarioService {
         });
     }
     update(id: number, funcionario: IFuncionario): Observable<IFuncionario> {
-        return this.http.put<IFuncionario>(this.funcionarioURL + 'update/${id}', funcionario);
+        return this.http.put<IFuncionario>(this.funcionarioURL + 'update/'+id, funcionario);
     }
 
     delete(id: number): Observable<any> {

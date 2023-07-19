@@ -1,5 +1,5 @@
 <div mat-dialog-title>
-    <h1>add nova funcionário</h1>
+    <h1>add funcionário</h1>
 </div >
 
 
@@ -10,11 +10,11 @@
         <div class="row">        
             <mat-form-field appearance="outline">
                 <mat-label>Nome</mat-label>
-                <input matInput formControlName="nome" type="text"    placeholder="Ex. informática">
+                <input matInput formControlName="nome" type="text"    placeholder="Ex. antónio">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Sobrenome</mat-label>
-                <input matInput formControlName="sobrenome" type="text"     placeholder="Ex. informática">
+                <input matInput formControlName="sobrenome" type="text"     placeholder="Ex. gonzaga">
             </mat-form-field>
 
         </div>
@@ -28,15 +28,15 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>CPF</mat-label>
-                <input matInput formControlName="cpf" type="text"      placeholder="Ex. informática">
+                <input matInput formControlName="cpf" type="text"      placeholder="Ex. 29999-000">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>RG</mat-label>
-                <input matInput formControlName="rg" type="text"     placeholder="Ex. informática">
+                <input matInput formControlName="rg" type="text"     placeholder="Ex. r9898">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Passaporte</mat-label>
-                <input matInput formControlName="passaporte" type="text"     placeholder="Ex. informática">
+                <input matInput formControlName="passaporte" type="text"     placeholder="Ex. n8787876">
             </mat-form-field>
 
         </div>
@@ -44,15 +44,15 @@
         <div class="row">  
             <mat-form-field appearance="outline">
                 <mat-label>Mãe</mat-label>
-                <input matInput formControlName="mae" type="text"      placeholder="Ex. informática">
+                <input matInput formControlName="mae" type="text"      placeholder="Ex. maria">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Pai</mat-label>
-                <input matInput formControlName="pai" type="text"   name="pai"   placeholder="Ex. informática">
+                <input matInput formControlName="pai" type="text"   name="pai"   placeholder="Ex. jośe">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Naturalidade</mat-label>
-                <input matInput formControlName="naturalidade" type="text"     placeholder="Ex. informática">
+                <input matInput formControlName="naturalidade" type="text"     placeholder="Ex. vitória">
             </mat-form-field>
         </div>
         <div class="row">
@@ -60,7 +60,7 @@
 
             <mat-form-field appearance="outline">
                 <mat-label>Matrícula</mat-label>
-                <input matInput formControlName="matricula" type="text"     placeholder="Ex. informática">
+                <input matInput formControlName="matricula" type="text"     placeholder="Ex. 989808">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Salário</mat-label>
@@ -84,13 +84,29 @@
             </mat-radio-group>            
 
         </div>     
+        <div class="row">
+            <mat-form-field>
+                <mat-label>Departamento</mat-label>
+               <mat-select formControlName="departamento" required>
+                    <mat-option>Selecione o departamento</mat-option>
+                    <mat-option *ngFor="let departamento of departamentos " [value]="departamento.nome">
+                        {{departamento.nome}}
+                    </mat-option>
+                </mat-select>
+                <!--mat-error *ngIf="departamento.hasError('required')">Please choose an animal</mat-error>
+               <mat-hint>{{departamento.value?.sound}}</mat-hint-->
+            </mat-form-field>        
+
+        </div>     
+
+
 
 
 
     </div>
-     <div mat-dialog-actions class="action">
-            <button mat-raised-button type="button" [mat-dialog-close]="false">Cancelar</button>
-            <button mat-raised-button color="primary" type="submit">{{data ? 'Atualizar': 'Salvar'}}</button>
-        </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancelar</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Atualizar': 'Salvar'}}</button>
+    </div>
 
 </form>

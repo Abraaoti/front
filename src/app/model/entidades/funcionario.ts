@@ -1,8 +1,8 @@
+import { IDepartamento } from "./idepartamento";
 
 
 
-export interface IFuncionario {
-    
+export interface IFuncionario {   
     
     id?: number;
     nome: string;
@@ -15,6 +15,7 @@ export interface IFuncionario {
     passaporte: string;
     genero: string;
     estado_civil: string;
+    departamento: {};
     naturalidade: string;
     //admissao: string;
     matricula: String;

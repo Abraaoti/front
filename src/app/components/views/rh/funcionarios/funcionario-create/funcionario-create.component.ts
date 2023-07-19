@@ -27,6 +27,7 @@ export class FuncionarioCreateComponent implements OnInit {
         passaporte: '',
         genero: '',
         estado_civil: '',
+        departamento: {},
         naturalidade: '',
         // admissao: '',
         matricula: '',
@@ -34,18 +35,10 @@ export class FuncionarioCreateComponent implements OnInit {
         salario: 0,
 
     }
-    generos: string[] = [
-        'feminino',
-        'masculino',
-        'outros',
-    ]
+    generos!: string[];
 
-    estado_civil: string[] = [
-        'solteiro(a)',
-        'casado(a)',
-        'divorciado(a)',
-        'viúva(o)',
-    ];
+    estado_civil!: string[];
+    departamentos!: any;
     constructor(
         private fs: FuncionarioService,
         private router: Router,
@@ -57,12 +50,16 @@ export class FuncionarioCreateComponent implements OnInit {
     }
     ngOnInit(): void {
         this.funForm.patchValue(this.data)
+        this.g();
+        this.ec();
+        this.d();
+
     }
 
-    onCreate(): void{
+    onCreate(): void {
         if (this.funForm.valid) {
             if (this.data) {
-                this.fs.update(this.data.id, this.funForm.value)
+                this.fs.update(this.data.id,this.funForm.value)
                     .subscribe({
                         next: (val: any) => {
                             this.fs.mensagem('Operação realizada com sucesso!');
@@ -75,6 +72,7 @@ export class FuncionarioCreateComponent implements OnInit {
             } else {
 
                 this.fs.create(this.funForm.value).subscribe(data => {
+                    console.log(this.funForm.value)
                     // this.router.navigate(["funcionarios/create"]);
                     this.fs.mensagem("Operação realizada com sucesso!");
                     this._dialogRef.close(true);
@@ -88,10 +86,29 @@ export class FuncionarioCreateComponent implements OnInit {
         }
 
     }
-    //cancel(): void {
-        // this.router.navigate(["funcionarios/create"]);
-       // this._dialogRef.close(true);
-   // }
+
+    g() {
+        this.fs.genero().subscribe(data => {
+            this.generos = data;
+        }
+        );
+    }
+    ec() {
+        this.fs.estadoCivil().subscribe(data => {
+            this.estado_civil = data;
+        }
+        );
+    }
+    d() {
+        this.fs.departamento().subscribe(data => {
+            this.departamentos = data;
+        }
+        );
+    }
+    //departamentos(): void {
+    // this.router.navigate(["funcionarios/create"]);
+    // this._dialogRef.close(true);
+    // }
 
     //addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
     //this.nasc = (`${event.value}`);
