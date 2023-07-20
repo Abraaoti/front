@@ -59,7 +59,7 @@ export class FuncionarioCreateComponent implements OnInit {
     onCreate(): void {
         if (this.funForm.valid) {
             if (this.data) {
-                this.fs.update(this.data.id,this.funForm.value)
+                this.fs.update(this.funForm.value)
                     .subscribe({
                         next: (val: any) => {
                             this.fs.mensagem('Operação realizada com sucesso!');

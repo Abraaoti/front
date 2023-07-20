@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IFuncionario } from '../entidades/funcionario';
 
@@ -9,13 +9,17 @@ import { IFuncionario } from '../entidades/funcionario';
     providedIn: 'root'
 })
 export class FuncionarioService {
- funcionarioURL = environment.apiUrl + "api/pessoa/"
-   // funcionarioURL = 'https://app-sg.herokuapp.com/api/funcionario/';
+
+    private funcionarioURL = environment.apiUrl + "api/pessoa/";
+    httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    // funcionarioURL = 'https://app-sg.herokuapp.com/api/funcionario/';
     constructor(private http: HttpClient, private _sbar: MatSnackBar) { }
 
 
 
-    findAll(): Observable<IFuncionario[]> {
+    getFuncionarios(): Observable<IFuncionario[]> {
         //const url = `${baseUrl}/lista`;
         return this.http.get<IFuncionario[]>(this.funcionarioURL + 'lista');
     }
@@ -31,7 +35,7 @@ export class FuncionarioService {
         //const url = `${baseUrl}/lista`;
         return this.http.get<string[]>(this.funcionarioURL + 'departamentos');
     }
-    
+
 
     create(funcionario: IFuncionario): Observable<IFuncionario> {
         // const url  = `${baseUrl}/create`;
@@ -45,12 +49,16 @@ export class FuncionarioService {
 
         });
     }
-    update(id: number, funcionario: IFuncionario): Observable<IFuncionario> {
-        return this.http.put<IFuncionario>(this.funcionarioURL + 'update/'+id, funcionario);
+    update(funcionario: IFuncionario): Observable<IFuncionario> {
+        return this.http.put<IFuncionario>(this.funcionarioURL + 'update', funcionario);
     }
 
     delete(id: number): Observable<any> {
         return this.http.delete(this.funcionarioURL + 'delete/${id}');
+    }
+    getFuncionario(id: number): Observable<IFuncionario> {
+        const url = `${this.funcionarioURL}/${id}`;
+        return this.http.get<IFuncionario>(url);
     }
 
 
@@ -58,4 +66,6 @@ export class FuncionarioService {
     findByTitle(nome: string): Observable<IFuncionario[]> {
         return this.http.get<IFuncionario[]>(this.funcionarioURL + `?nome=${nome}`);
     }
+
+
 }

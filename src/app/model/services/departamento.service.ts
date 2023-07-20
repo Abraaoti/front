@@ -9,22 +9,22 @@ import { IDepartamento } from '../entidades/idepartamento';
     providedIn: 'root'
 })
 export class DepartamentoService {
-    apiURL = environment.apiUrl + "api/departamento/"
+   private departamentoURL = environment.apiUrl + "api/departamento/"
     // funcionarioURL = 'https://app-sg.herokuapp.com/api/funcionario/';
     constructor(private http: HttpClient, private _sbar: MatSnackBar) { }
 
 
 
-    findAll(): Observable<IDepartamento[]> {
+    getDepartamentos(): Observable<IDepartamento[]> {
         //const url = `${baseUrl}/lista`;
-        return this.http.get<IDepartamento[]>(this.apiURL + 'lista');
+        return this.http.get<IDepartamento[]>(this.departamentoURL + 'lista');
     }
 
 
 
     create(departamento: IDepartamento): Observable<IDepartamento> {
         // const url  = `${baseUrl}/create`;
-        return this.http.post<IDepartamento>(this.apiURL + 'create', departamento);
+        return this.http.post<IDepartamento>(this.departamentoURL + 'create', departamento);
     }
     mensagem(str: String): void {
         this._sbar.open('${str}', 'OK', {
@@ -35,16 +35,17 @@ export class DepartamentoService {
         });
     }
     update(id: number, departamento: IDepartamento): Observable<IDepartamento> {
-        return this.http.put<IDepartamento>(this.apiURL + 'update/${id}', departamento);
+        return this.http.put<IDepartamento>(this.departamentoURL + 'update/${id}', departamento);
     }
 
-    delete(id: number): Observable<any> {
-        return this.http.delete(this.apiURL + 'delete/${id}');
+    deleteDepartamento(id: number): Observable<IDepartamento> {
+        return this.http.delete<IDepartamento>(this.departamentoURL + 'delete/${id}').pipe()
+        ;
     }
 
 
 
     findByTitle(nome: string): Observable<IDepartamento[]> {
-        return this.http.get<IDepartamento[]>(this.apiURL + `?nome=${nome}`);
+        return this.http.get<IDepartamento[]>(this.departamentoURL + `?nome=${nome}`);
     }
 }

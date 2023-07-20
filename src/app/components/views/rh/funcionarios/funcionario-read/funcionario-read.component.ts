@@ -15,7 +15,7 @@ import { FuncionarioCreateComponent } from '../funcionario-create/funcionario-cr
 })
 export class FuncionarioReadComponent implements OnInit {
     funcionarios: IFuncionario[] = []
-    displayedColumns: string[] = ['id', 'nome', 'nascimento', 'cpf',  'mae', 'pai',  'genero', 'estado_civil', 'naturalidade','salario', 'acoes'];
+    displayedColumns: string[] = ['id', 'nome', 'nascimento', 'cpf',  'mae', 'pai',  'genero', 'estado_civil', 'naturalidade','departamento','salario', 'acoes'];
 
 
     dataSource!: MatTableDataSource<any>;
@@ -35,7 +35,7 @@ export class FuncionarioReadComponent implements OnInit {
     }
 
     lista() {
-        this.service.findAll().subscribe(data => {
+        this.service.getFuncionarios().subscribe(data => {
            
             this.funcionarios = data;
             this.dataSource = new MatTableDataSource(this.funcionarios);

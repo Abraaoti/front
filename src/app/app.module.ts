@@ -45,6 +45,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DepartamentoCreateComponent } from './components/views/departamento/departamento-create/departamento-create.component';
 import { DepartamentoReadComponent } from './components/views/departamento/departamento-read/departamento-read.component';
+import { MensagemReadComponent } from './components/views/mensagens/mensagem-read/mensagem-read.component';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import { DepartamentoReadComponent } from './components/views/departamento/depar
       
         DepartamentoCreateComponent,
         DepartamentoReadComponent,
+        MensagemReadComponent,
       
     ],
     imports: [

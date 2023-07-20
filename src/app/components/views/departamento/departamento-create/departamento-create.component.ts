@@ -12,13 +12,13 @@ import { DepartamentoService } from 'src/app/model/services/departamento.service
 })
 export class DepartamentoCreateComponent implements OnInit {
     depForm: FormGroup;
-    departamento: IDepartamento = {
+    departamento: IDepartamento = {      
         nome: '',
 
     }
 
     constructor(
-        private ds: DepartamentoService,
+        private dService: DepartamentoService,
         private router: Router,
         private _fb: FormBuilder,
         private _dialogRef: MatDialogRef<DepartamentoCreateComponent>,
@@ -34,10 +34,10 @@ export class DepartamentoCreateComponent implements OnInit {
     onCreate(): void {
         if (this.depForm.valid) {
             if (this.data) {
-                this.ds.update(this.data.id, this.depForm.value)
+                this.dService.update(this.data.id, this.depForm.value)
                     .subscribe({
                         next: (val: any) => {
-                            this.ds.mensagem('Operação realizada com sucesso!');
+                            this.dService.mensagem('Operação realizada com sucesso!');
                             this._dialogRef.close(true);
                         },
                         error: (err: any) => {
@@ -46,14 +46,14 @@ export class DepartamentoCreateComponent implements OnInit {
                     });
             } else {
 
-                this.ds.create(this.depForm.value).subscribe(data => {
+                this.dService.create(this.depForm.value).subscribe(data => {
                     console.log(this.depForm.value)
                     // this.router.navigate(["funcionarios/create"]);
-                    this.ds.mensagem("Operação realizada com sucesso!");
+                    this.dService.mensagem("Operação realizada com sucesso!");
                     this._dialogRef.close(true);
                 }, err => {
                     for (let i = 0; i < err.error.errors.length; i++) {
-                        this.ds.mensagem(err.error.errors[i].message);
+                        this.dService.mensagem(err.error.errors[i].message);
                     }
                 }
                 )
