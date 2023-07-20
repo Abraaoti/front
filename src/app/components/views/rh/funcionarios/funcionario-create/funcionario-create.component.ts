@@ -5,6 +5,8 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DepartamentoService } from 'src/app/model/services/departamento.service';
+import { IDepartamento } from 'src/app/model/entidades/idepartamento';
 
 
 
@@ -27,7 +29,7 @@ export class FuncionarioCreateComponent implements OnInit {
         passaporte: '',
         genero: '',
         estado_civil: '',
-        departamento: {},
+        departamento: [],
         naturalidade: '',
         // admissao: '',
         matricula: '',
@@ -38,8 +40,9 @@ export class FuncionarioCreateComponent implements OnInit {
     generos!: string[];
 
     estado_civil!: string[];
-    departamentos!: any;
+    departamentos!: IDepartamento[];
     constructor(
+      private ds: DepartamentoService,
         private fs: FuncionarioService,
         private router: Router,
         private _fb: FormBuilder,
@@ -59,6 +62,7 @@ export class FuncionarioCreateComponent implements OnInit {
     onCreate(): void {
         if (this.funForm.valid) {
             if (this.data) {
+              
                 this.fs.update(this.funForm.value)
                     .subscribe({
                         next: (val: any) => {
@@ -100,7 +104,7 @@ export class FuncionarioCreateComponent implements OnInit {
         );
     }
     d() {
-        this.fs.departamento().subscribe(data => {
+        this.ds.getDepartamentos().subscribe(data => {
             this.departamentos = data;
         }
         );

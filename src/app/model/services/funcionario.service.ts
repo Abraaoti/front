@@ -31,11 +31,7 @@ export class FuncionarioService {
         //const url = `${baseUrl}/lista`;
         return this.http.get<string[]>(this.funcionarioURL + 'estadoCivil');
     }
-    departamento(): Observable<string[]> {
-        //const url = `${baseUrl}/lista`;
-        return this.http.get<string[]>(this.funcionarioURL + 'departamentos');
-    }
-
+   
 
     create(funcionario: IFuncionario): Observable<IFuncionario> {
         // const url  = `${baseUrl}/create`;

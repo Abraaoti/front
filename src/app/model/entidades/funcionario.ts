@@ -15,7 +15,7 @@ export interface IFuncionario {
     passaporte: string;
     genero: string;
     estado_civil: string;
-    departamento: {};
+    departamento: IDepartamento[];
     naturalidade: string;
     //admissao: string;
     matricula: String;
