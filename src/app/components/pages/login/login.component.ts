@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Credenciais } from 'src/app/shared/models/services/credenciais';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Credenciais } from 'src/app/shared/models/credenciais';
+import { AuthenticationService } from 'src/app/shared/models/services/authentication.service';
 
 @Component({
     selector: 'app-login',
@@ -14,15 +16,24 @@ export class LoginComponent implements OnInit {
     }
     email = new FormControl(null, Validators.email);
     senha = new FormControl(null, Validators.minLength(3));
+    authenticar = null;
+
+    constructor(private auth: AuthenticationService) { }
+
+
     ngOnInit(): void {
 
 
     }
-    validarCampos(): boolean {
-        if (this.email.valid && this.senha.valid) {
-            return true;
-        } else {
-            return false;
+    logar() {
+        this.auth.autenticar(this.creds).subscribe(response => {
+            //this.authenticar = response.headers.get('Authorization');
+            this.auth.successFullLogin(response.statusText);
+            this.auth.mensagem(response.statusText);
         }
+        )
+    }
+    validarCampos(): boolean {
+        return this.email.valid && this.senha.valid;
     }
 }

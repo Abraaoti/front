@@ -14,6 +14,7 @@ export class FuncionarioService {
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
+    //api/pessoa/lista
     // funcionarioURL = 'https://app-sg.herokuapp.com/api/funcionario/';
     constructor(private http: HttpClient, private _sbar: MatSnackBar) { }
 
