@@ -1,0 +1,60 @@
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+
+        <mat-nav-list class="nav-list">
+            <a routerLink="home" mat-list-item routerLinkActive="selected">
+                <i class="material-icons">home</i>home
+            </a>
+
+            <a mat-list-item routerLink="/documentos"  ><i class="material-icons">admin_panel_settings</i>   Documentos  </a>
+            <a mat-list-item routerLink="/gestao"  > Gestão  </a>
+
+            <a mat-list-item routerLink="/organigrama"  >  <i class="material-icons">manage_accounts</i>  organigrama  </a>
+            <a mat-list-item routerLink="/projetos"  > Projetos  </a>
+            <a mat-list-item routerLink="/contratos"  > Contratos  </a>
+
+            <a mat-list-item routerLink="/pagar"  routerLinkActive="selected">
+                <i class="material-icons">account_balance</i> 
+                pagar  </a>
+            <a mat-list-item routerLink="/receber"   routerLinkActive="selected"> receber  </a>
+            <a mat-list-item routerLink="/contratos"  routerLinkActive="selected"> Contratos  </a>
+            <a mat-list-item routerLink="/nf"  routerLinkActive="selected"> NFs </a>
+
+            <a mat-list-item routerLink="/pessoas"  routerLinkActive="selected">
+                <i class="material-icons">person</i> 
+                Pessoas 
+            </a>
+            <a mat-list-item routerLink="/funcionario/lista"  routerLinkActive="selected"> Funcionários  </a>
+            <a mat-list-item routerLink="/funcao"  routerLinkActive="selected"> Funções  </a>
+            <a mat-list-item routerLink="/departamento/create" routerLinkActive="selected"> Departamento  </a>
+            <a mat-list-item routerLink="/fp"  routerLinkActive="selected"> Folha de Pagamento </a>
+
+            <a mat-list-item routerLink="/usuarios"  > 
+                <i class="material-icons">account_circle</i>Usuários 
+            </a>
+
+
+            <a routerLink="/" mat-list-item routerLinkActive="selected">
+                <i class="material-icons">logout</i>Logout
+            </a>
+
+        </mat-nav-list>
+
+
+
+
+
+
+
+    </mat-drawer>
+
+    <div class="sidenav-content">
+        <app-header></app-header>
+        <button class="menu"  (click)="drawer.toggle()" mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <app-footer></app-footer>
+        <router-outlet> </router-outlet>
+    </div>
+
+</mat-drawer-container>

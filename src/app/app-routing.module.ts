@@ -1,35 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DepartamentoCreateComponent } from './components/views/departamento/departamento-create/departamento-create.component';
-import { HomeComponent } from './components/views/home/home.component';
-import { FuncionarioCreateComponent } from './components/views/rh/funcionarios/funcionario-create/funcionario-create.component';
-import { FuncionarioDeleteComponent } from './components/views/rh/funcionarios/funcionario-delete/funcionario-delete.component';
-import { FuncionarioReadComponent } from './components/views/rh/funcionarios/funcionario-read/funcionario-read.component';
-import { FuncionarioUpdateComponent } from './components/views/rh/funcionarios/funcionario-update/funcionario-update.component';
+import { ContaCreateComponent } from './components/views/financeiro/contas/conta-create/conta-create.component';
+import { NavComponent } from './components/nav/nav.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/pages/login/login.component';
+import { PessoaReadComponent } from './pages/pessoas/pessoa-read/pessoa-read.component';
 
 const routes: Routes = [
+    {
+        path: 'login', component: LoginComponent
+    },
+    {
+        path: '', component: NavComponent,
+        children: [
+            {
+                path: 'home', component: HomeComponent
+            },
+            {
+                path: 'pessoas', component: PessoaReadComponent
+            },
 
-    {
-        path: '', component: HomeComponent
+            {
+                path: 'pagar', component: ContaCreateComponent
+            },
+        ]
     },
-   
-    {
-        path: 'funcionario/lista', component: FuncionarioReadComponent
-    },
-    {
-        path: 'funcionario/create', component: FuncionarioCreateComponent
-    },
-    {
-        path: 'funcionario/delete/:id', component: FuncionarioDeleteComponent
-    },
-    {
-        path: 'funcionario/update/:id', component: FuncionarioUpdateComponent
-    },
-   
-    {
-        path: 'departamento/create', component: DepartamentoCreateComponent
-    },
-   
+
+
 ];
 
 @NgModule({

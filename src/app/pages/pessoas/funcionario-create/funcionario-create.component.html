@@ -1,0 +1,97 @@
+<div mat-dialog-title>
+    <h1>add funcionário</h1>
+</div >
+
+
+<form [formGroup]="funForm" (ngSubmit)="onCreate()"> 
+
+
+    <div mat-dialog-content class="content">
+        <div class="row">        
+            <mat-form-field appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nome" type="text"    placeholder="Ex. antónio">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Sobrenome</mat-label>
+                <input matInput formControlName="sobrenome" type="text"     placeholder="Ex. gonzaga">
+            </mat-form-field>
+
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Nascimento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="nascimento"  >
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>CPF</mat-label>
+                <input matInput formControlName="cpf" type="text"      placeholder="Ex. 29999-000">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>RG</mat-label>
+                <input matInput formControlName="rg" type="text"     placeholder="Ex. r9898">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Passaporte</mat-label>
+                <input matInput formControlName="passaporte" type="text"     placeholder="Ex. n8787876">
+            </mat-form-field>
+
+        </div>
+
+        <div class="row">  
+            <mat-form-field appearance="outline">
+                <mat-label>Mãe</mat-label>
+                <input matInput formControlName="mae" type="text"      placeholder="Ex. maria">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Pai</mat-label>
+                <input matInput formControlName="pai" type="text"   name="pai"   placeholder="Ex. jośe">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Naturalidade</mat-label>
+                <input matInput formControlName="naturalidade" type="text"     placeholder="Ex. vitória">
+            </mat-form-field>
+        </div>
+        <div class="row">
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Matrícula</mat-label>
+                <input matInput formControlName="matricula" type="text"     placeholder="Ex. 989808">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Salário</mat-label>
+                <input matInput formControlName="salario" type="text"     placeholder="00.888">
+            </mat-form-field>
+
+           
+        </div>
+         
+        <div class="row">
+            <mat-form-field>
+                <mat-label>Selecione um departamento</mat-label>
+               <mat-select formControlName="departamento"  name="departamento" id="departamento" required>
+                    <mat-option *ngFor="let departamento of departamentos " [value]="departamento.id">
+                        {{departamento.nome}}
+                    </mat-option>
+                </mat-select>
+                <!--mat-error *ngIf="departamento.hasError('required')">Please choose an animal</mat-error>
+               <mat-hint>{{departamento.value?.sound}}</mat-hint-->
+            </mat-form-field>        
+
+        </div>     
+
+
+
+
+
+    </div>
+    <div mat-dialog-actions class="action">
+        
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Atualizar': 'Salvar'}}</button>
+    </div>
+
+</form>

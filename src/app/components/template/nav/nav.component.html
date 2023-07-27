@@ -1,7 +1,7 @@
 <mat-sidenav-container class="container">
     <mat-sidenav mode="side" opened>
         <mat-nav-list>
-            <a routerLink="" mat-list-item >
+            <a routerLink="" mat-list-item routerLinkActive="selected">
                 <i class="material-icons">home</i>
                 home
             </a>
@@ -36,10 +36,10 @@
                     <mat-icon>account_balance</mat-icon><span>Financeiro</span>
                 </mat-expansion-panel-header>
                 <mat-nav-list>
-                    <a mat-list-item routerLink="/pagar"  > pagar  </a>
-                    <a mat-list-item routerLink="/receber"  > receber  </a>
-                    <a mat-list-item routerLink="/contratos"  > Contratos  </a>
-                    <a mat-list-item routerLink="/nf"  > NFs </a>
+                    <a mat-list-item routerLink="/pagar"  routerLinkActive="selected"> pagar  </a>
+                    <a mat-list-item routerLink="/receber"   routerLinkActive="selected"> receber  </a>
+                    <a mat-list-item routerLink="/contratos"  routerLinkActive="selected"> Contratos  </a>
+                    <a mat-list-item routerLink="/nf"  routerLinkActive="selected"> NFs </a>
 
                 </mat-nav-list>
             </mat-expansion-panel>
@@ -49,10 +49,11 @@
 
                 </mat-expansion-panel-header>
                 <mat-nav-list>
-                    <a mat-list-item routerLink="/funcionario/lista"  > Funcionários  </a>
-                    <a mat-list-item routerLink="/funcao"  > Funções  </a>
-                    <a mat-list-item routerLink="/departamento/create"  > Departamento  </a>
-                    <a mat-list-item routerLink="/fp"  > Folha de Pagamento </a>
+                      <a mat-list-item routerLink="/pessoas"  routerLinkActive="selected"> Pessoas  </a>
+                      <a mat-list-item routerLink="/funcionario/lista"  routerLinkActive="selected"> Funcionários  </a>
+                    <a mat-list-item routerLink="/funcao"  routerLinkActive="selected"> Funções  </a>
+                    <a mat-list-item routerLink="/departamento/create" routerLinkActive="selected"> Departamento  </a>
+                    <a mat-list-item routerLink="/fp"  routerLinkActive="selected"> Folha de Pagamento </a>
 
                 </mat-nav-list>
             </mat-expansion-panel>
@@ -62,11 +63,11 @@
 
                 </mat-expansion-panel-header>
                 <mat-nav-list>
-                    <a mat-list-item routerLink="/categorias"  > Categorias  </a>
-                    <a mat-list-item routerLink="/produtos"  > Produtos  </a>
-                    <a mat-list-item routerLink="/forncedores"  > Fornecedores  </a>
-                    <a mat-list-item routerLink="/cc"  > Centrdo de custo  </a>
-                    <a mat-list-item routerLink="/cotacao"  > cotações  </a>
+                    <a mat-list-item routerLink="/categorias"  routerLinkActive="selected"> Categorias  </a>
+                    <a mat-list-item routerLink="/produtos"  routerLinkActive="selected"> Produtos  </a>
+                    <a mat-list-item routerLink="/forncedores"  routerLinkActive="selected"> Fornecedores  </a>
+                    <a mat-list-item routerLink="/cc" routerLinkActive="selected"> Centrdo de custo  </a>
+                    <a mat-list-item routerLink="/cotacao"  routerLinkActive="selected"> cotações  </a>
                 </mat-nav-list>
             </mat-expansion-panel>
 
@@ -95,11 +96,6 @@
                     <a mat-list-item routerLink="/cotacao"  > cotações  </a>
                 </mat-nav-list>
             </mat-expansion-panel>
-
-
-
-
-
 
         </mat-nav-list>
     </mat-sidenav>
