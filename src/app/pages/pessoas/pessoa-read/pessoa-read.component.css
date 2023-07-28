@@ -1,3 +1,8 @@
+.card{
+    width: 98%;
+    margin: 1rem auto;
+}
+
 .lista .tabela{
   width: 100%;
 }

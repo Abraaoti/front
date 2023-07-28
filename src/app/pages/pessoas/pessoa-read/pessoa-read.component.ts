@@ -40,7 +40,7 @@ export class PessoaReadComponent implements OnInit {
             this.dataSource = new MatTableDataSource(this.funcionarios);
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;
-            console.log(this.funcionarios)
+           
         }
         );
 
@@ -81,8 +81,10 @@ export class PessoaReadComponent implements OnInit {
     }
 
     editForm(data: Funcionario) {
+        console.log(data)
         const dialogRef = this._dialog.open(FuncionarioCreateComponent, {
             data,
+             
         });
 
         dialogRef.afterClosed().subscribe({

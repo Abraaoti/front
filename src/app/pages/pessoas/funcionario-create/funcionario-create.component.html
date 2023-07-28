@@ -67,19 +67,33 @@
                 <input matInput formControlName="salario" type="text"     placeholder="00.888">
             </mat-form-field>
 
-           
-        </div>
-         
-        <div class="row">
-            <mat-form-field>
-                <mat-label>Selecione um departamento</mat-label>
-               <mat-select formControlName="departamento"  name="departamento" id="departamento" required>
-                    <mat-option *ngFor="let departamento of departamentos " [value]="departamento.id">
-                        {{departamento.nome}}
+
+            <mat-form-field appearance="outline">
+                <mat-label>selecione o estado civil</mat-label>
+                <mat-select formControlName="estado_civil" required>
+                    <mat-option *ngFor="let estado_civil of estado_civil " [value]="estado_civil">{{estado_civil}}
+
                     </mat-option>
                 </mat-select>
+            </mat-form-field>
+        </div>
+      
+            <label id="radio-group-label">Selecione o seu genero por gentileza</label>
+            <mat-radio-group  aria-labelledby="radio-group-label" class="radio-group" formControlName="genero" required>
+                <mat-radio-button class="radio-button" *ngFor="let genero of generos" [value]="genero">
+                    {{genero}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+
+        <div class="row">
+             <mat-form-field appearance="outline">
+                <mat-label>Selecione um departamento</mat-label>
+                <mat-select formControlName="departamento"  id="departamento" required>
+                    <mat-option *ngFor="let departamento of departamentos " [value]="departamento"> {{departamento.nome}}</mat-option>
+                </mat-select>
                 <!--mat-error *ngIf="departamento.hasError('required')">Please choose an animal</mat-error>
-               <mat-hint>{{departamento.value?.sound}}</mat-hint-->
+                <mat-hint>{{departamento.value?.nome}}</mat-hint-->
             </mat-form-field>        
 
         </div>     
@@ -90,7 +104,7 @@
 
     </div>
     <div mat-dialog-actions class="action">
-        
+
         <button mat-raised-button color="primary" type="submit">{{data ? 'Atualizar': 'Salvar'}}</button>
     </div>
 

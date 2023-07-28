@@ -22,6 +22,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FuncionarioCreateComponent } from '../pages/pessoas/funcionario-create/funcionario-create.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 
@@ -46,6 +47,7 @@ import { MatDividerModule } from '@angular/material/divider';
         MatInputModule,
         MatDatepickerModule,
         MatSelectModule,
+        MatRadioModule,
         ReactiveFormsModule,
         MatIconModule,
         MatPaginatorModule,

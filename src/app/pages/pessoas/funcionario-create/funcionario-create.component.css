@@ -31,9 +31,20 @@ h1{
 }
 
 .action {
-  padding: 0px 25px 20px;
-  
+    padding: 0px 25px 20px;
+
 }
 button {
     flex: 1;
-  }
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+}
+
+.radio-button {
+    margin: 5px;
+}
