@@ -40,6 +40,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MensagemReadComponent } from './components/views/mensagens/mensagem-read/mensagem-read.component';
 import { PessoaModule } from './pessoa/pessoa.module';
 import { LoginComponent } from './components/pages/login/login.component';
+import { DepartamentoReadComponent } from './pages/departamentos/departamento-read/departamento-read.component';
+import { DepartamentoCreateComponent } from './pages/departamentos/departamento-create/departamento-create.component';
 
 @NgModule({
     declarations: [
@@ -56,6 +58,8 @@ import { LoginComponent } from './components/pages/login/login.component';
         UsuarioUpdateComponent,
         MensagemReadComponent,
         LoginComponent,
+        DepartamentoReadComponent,
+        DepartamentoCreateComponent,
 
     ],
     imports: [

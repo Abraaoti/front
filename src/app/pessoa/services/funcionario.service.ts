@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class FuncionarioService {
 
-    private funcionarioURL = environment.apiUrl + "api/pessoa/";
+    private funcionarioURL = environment.apiUrl + "api/p/";
 
     constructor(private http: HttpClient, private _sbar: MatSnackBar) { }
 
@@ -19,7 +19,7 @@ export class FuncionarioService {
 
     getFuncionarios(): Observable<Funcionario[]> {
         //const url = `${baseUrl}/lista`;
-        return this.http.get<Funcionario[]>(this.funcionarioURL + 'lista').pipe(first());
+        return this.http.get<Funcionario[]>(this.funcionarioURL + 'pessoas').pipe(first());
     }
     genero(): Observable<string[]> {
         //const url = `${baseUrl}/lista`;
@@ -30,35 +30,32 @@ export class FuncionarioService {
         return this.http.get<string[]>(this.funcionarioURL + 'estadoCivil').pipe(first());
     }
 
-    salvar(funcionario: Funcionario): Observable<Funcionario> {
-        if (funcionario.id != null) {
+    salvar(funcionario: Partial<Funcionario>){
+        if (funcionario._id !==null) {
             return this.update(funcionario);
         }
-        return this.create(funcionario);
+        return  this.create(funcionario);
     }
 
-    mensagem(str: String): void {
-        this._sbar.open('${str}', 'OK', {
+    mensagem(msg: string): void {
+        this._sbar.open(msg, '', {
             horizontalPosition: 'end',
             verticalPosition: 'top',
-            duration: 3000
+            duration: 5000
 
         });
     }
-    update(funcionario: Funcionario): Observable<Funcionario> {
+   private update(funcionario: Partial<Funcionario>) {   
         return this.http.put<Funcionario>(this.funcionarioURL + 'update', funcionario).pipe(first());
     }
-    private create(funcionario: Funcionario): Observable<Funcionario> {
+    private create(funcionario: Partial<Funcionario>){
         return this.http.post<Funcionario>(this.funcionarioURL + 'create', funcionario).pipe(first());
     }
 
-    delete(id: number): Observable<any> {
-        return this.http.delete(this.funcionarioURL + 'delete/${id}');
+    delete(id: any){
+        return this.http.delete(this.funcionarioURL + 'delete/'+id);
     }
-    getFuncionario(id: number): Observable<Funcionario> {
-        const url = `${this.funcionarioURL}/${id}`;
-        return this.http.get<Funcionario>(url).pipe(first());
-    }
+   
     findByTitle(nome: string): Observable<Funcionario[]> {
         return this.http.get<Funcionario[]>(this.funcionarioURL + `?nome=${nome}`);
     }

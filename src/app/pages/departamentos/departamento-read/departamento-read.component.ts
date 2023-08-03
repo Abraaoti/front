@@ -1,21 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { FuncionarioService } from 'src/app/pessoa/services/funcionario.service';
-import { Funcionario } from 'src/app/shared/models/funcionario.model';
-import { FuncionarioCreateComponent } from '../funcionario-create/funcionario-create.component';
+import { Departamento } from 'src/app/shared/models/departamento.model';
+import { DepartamentoService } from 'src/app/shared/models/services/departamento.service';
+import { DepartamentoCreateComponent } from '../departamento-create/departamento-create.component';
 
 @Component({
-    selector: 'app-pessoa-read',
-    templateUrl: './pessoa-read.component.html',
-    styleUrls: ['./pessoa-read.component.css']
+  selector: 'app-departamento-read',
+  templateUrl: './departamento-read.component.html',
+  styleUrls: ['./departamento-read.component.css']
 })
-export class PessoaReadComponent implements OnInit {
-    funcionarios: Funcionario[] = []
-    displayedColumns: string[] = ['nome', 'nascimento', 'cpf', 'mae', 'pai', 'genero', 'estado_civil', 'naturalidade', 'departamento', 'salario', 'acoes'];
+export class DepartamentoReadComponent {
+     departamentos: Departamento[] = []
+    displayedColumns: string[] = ['id','nome','acoes'];
 
 
     dataSource!: MatTableDataSource<any>;
@@ -25,7 +25,7 @@ export class PessoaReadComponent implements OnInit {
 
 
     constructor(
-        private service: FuncionarioService,
+        private service: DepartamentoService,
         private router: Router,
         private _dialog: MatDialog,
     ) { }
@@ -34,9 +34,9 @@ export class PessoaReadComponent implements OnInit {
     }
 
     lista() {
-        this.service.getFuncionarios().subscribe(data => {
-            this.funcionarios = data;
-            this.dataSource = new MatTableDataSource(this.funcionarios);
+        this.service.departamentos().subscribe(data => {
+            this.departamentos = data;
+            this.dataSource = new MatTableDataSource(this.departamentos);
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;
            
@@ -46,9 +46,9 @@ export class PessoaReadComponent implements OnInit {
 
 
     }
-    formFuncionario() {
+    formDepartamento() {
 
-        const dialogRef = this._dialog.open(FuncionarioCreateComponent);
+        const dialogRef = this._dialog.open(DepartamentoCreateComponent);
         dialogRef.afterClosed().subscribe({
             next: (val) => {
                 if (val) {
@@ -79,9 +79,9 @@ export class PessoaReadComponent implements OnInit {
         });
     }
 
-    editForm(data: Funcionario) {     
+    editForm(data: Departamento) {     
    console.log(data)
-        const dialogRef = this._dialog.open(FuncionarioCreateComponent, {
+        const dialogRef = this._dialog.open(DepartamentoCreateComponent, {
             data, 
                         
         });
@@ -94,5 +94,6 @@ export class PessoaReadComponent implements OnInit {
             },
         });
     }
+
 
 }

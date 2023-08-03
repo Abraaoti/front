@@ -1,0 +1,28 @@
+<div mat-dialog-title>
+    <h1>add departamento</h1>
+</div >
+
+
+
+<form [formGroup]="_departamentoForm" (ngSubmit)="onCreate()"> 
+
+
+    <div mat-dialog-content class="content">
+        <div class="row">        
+            <mat-form-field appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nome" type="text"    placeholder="Ex. rh">
+            </mat-form-field>          
+
+        </div>
+        
+
+        
+
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button (click)="onCancel()" class="btn-space"> Cancelar  </button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Atualizar': 'Salvar'}}</button>
+    </div>
+
+</form>

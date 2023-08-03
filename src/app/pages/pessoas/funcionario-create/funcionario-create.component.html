@@ -3,7 +3,8 @@
 </div >
 
 
-<form [formGroup]="funForm" (ngSubmit)="onCreate()"> 
+
+<form [formGroup]="funcionarioForm" (ngSubmit)="onCreate()"> 
 
 
     <div mat-dialog-content class="content">
@@ -77,20 +78,20 @@
                 </mat-select>
             </mat-form-field>
         </div>
-      
-            <label id="radio-group-label">Selecione o seu genero por gentileza</label>
-            <mat-radio-group  aria-labelledby="radio-group-label" class="radio-group" formControlName="genero" required>
-                <mat-radio-button class="radio-button" *ngFor="let genero of generos" [value]="genero">
-                    {{genero}}
-                </mat-radio-button>
-            </mat-radio-group>
+
+        <label id="radio-group-label">Selecione o seu genero por gentileza</label>
+        <mat-radio-group  aria-labelledby="radio-group-label" class="radio-group" formControlName="genero" required>
+            <mat-radio-button class="radio-button" *ngFor="let genero of generos" [value]="genero">
+                {{genero}}
+            </mat-radio-button>
+        </mat-radio-group>
 
 
         <div class="row">
-             <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline">
                 <mat-label>Selecione um departamento</mat-label>
-                <mat-select formControlName="departamento"  id="departamento" required>
-                    <mat-option *ngFor="let departamento of departamentos " [value]="departamento"> {{departamento.nome}}</mat-option>
+                <mat-select formControlName="departamento"  id="departamento" name="departamento" required>
+                    <mat-option *ngFor="let departamento of departamentos" [value]="departamento"> {{departamento.nome}}</mat-option>
                 </mat-select>
                 <!--mat-error *ngIf="departamento.hasError('required')">Please choose an animal</mat-error>
                 <mat-hint>{{departamento.value?.nome}}</mat-hint-->
@@ -104,7 +105,7 @@
 
     </div>
     <div mat-dialog-actions class="action">
-
+        <button mat-raised-button (click)="onCancel()" class="btn-space"> Cancelar  </button>
         <button mat-raised-button color="primary" type="submit">{{data ? 'Atualizar': 'Salvar'}}</button>
     </div>
 

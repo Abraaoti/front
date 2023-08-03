@@ -5,6 +5,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { PessoaReadComponent } from './pages/pessoas/pessoa-read/pessoa-read.component';
+import { DepartamentoCreateComponent } from './pages/departamentos/departamento-create/departamento-create.component';
+import { DepartamentoReadComponent } from './pages/departamentos/departamento-read/departamento-read.component';
 
 const routes: Routes = [
     {
@@ -22,6 +24,9 @@ const routes: Routes = [
 
             {
                 path: 'pagar', component: ContaCreateComponent
+            },
+            {
+                path: 'departamentos', component: DepartamentoReadComponent
             },
         ]
     },
