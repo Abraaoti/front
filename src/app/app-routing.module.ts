@@ -7,6 +7,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { PessoaReadComponent } from './pages/pessoas/pessoa-read/pessoa-read.component';
 import { DepartamentoCreateComponent } from './pages/departamentos/departamento-create/departamento-create.component';
 import { DepartamentoReadComponent } from './pages/departamentos/departamento-read/departamento-read.component';
+import { CargoReadComponent } from './pages/cargos/cargo-read/cargo-read.component';
 
 const routes: Routes = [
     {
@@ -27,6 +28,9 @@ const routes: Routes = [
             },
             {
                 path: 'departamentos', component: DepartamentoReadComponent
+            },
+            {
+                path: 'cargo/cargos', component: CargoReadComponent
             },
         ]
     },

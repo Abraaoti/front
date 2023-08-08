@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class FuncionarioService {
 
-    private funcionarioURL = environment.apiUrl + "api/p/";
+    private baseURL = environment.apiUrl + "api/p/";
 
     constructor(private http: HttpClient, private _sbar: MatSnackBar) { }
 
@@ -19,15 +19,15 @@ export class FuncionarioService {
 
     getFuncionarios(): Observable<Funcionario[]> {
         //const url = `${baseUrl}/lista`;
-        return this.http.get<Funcionario[]>(this.funcionarioURL + 'pessoas').pipe(first());
+        return this.http.get<Funcionario[]>(this.baseURL + 'pessoas').pipe(first());
     }
     genero(): Observable<string[]> {
         //const url = `${baseUrl}/lista`;
-        return this.http.get<string[]>(this.funcionarioURL + 'generos').pipe(first());
+        return this.http.get<string[]>(this.baseURL + 'generos').pipe(first());
     }
     estadoCivil(): Observable<string[]> {
         //const url = `${baseUrl}/lista`;
-        return this.http.get<string[]>(this.funcionarioURL + 'estadoCivil').pipe(first());
+        return this.http.get<string[]>(this.baseURL + 'estadoCivil').pipe(first());
     }
 
     salvar(funcionario: Partial<Funcionario>){
@@ -46,18 +46,18 @@ export class FuncionarioService {
         });
     }
    private update(funcionario: Partial<Funcionario>) {   
-        return this.http.put<Funcionario>(this.funcionarioURL + 'update', funcionario).pipe(first());
+        return this.http.put<Funcionario>(this.baseURL + 'update', funcionario).pipe(first());
     }
     private create(funcionario: Partial<Funcionario>){
-        return this.http.post<Funcionario>(this.funcionarioURL + 'create', funcionario).pipe(first());
+        return this.http.post<Funcionario>(this.baseURL + 'create', funcionario).pipe(first());
     }
 
     delete(id: any){
-        return this.http.delete(this.funcionarioURL + 'delete/'+id);
+        return this.http.delete(this.baseURL + 'delete/'+id);
     }
    
     findByTitle(nome: string): Observable<Funcionario[]> {
-        return this.http.get<Funcionario[]>(this.funcionarioURL + `?nome=${nome}`);
+        return this.http.get<Funcionario[]>(this.baseURL + `?nome=${nome}`);
     }
 
 }

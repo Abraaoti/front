@@ -1,0 +1,153 @@
+table {
+  width: 100%;
+}
+.card{
+    width: 98%;
+    margin: 1rem auto;
+}
+
+.filtro .lista .tabela{
+  width: 100%;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: #5ecde0;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+.mat-column-id {
+ 
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.main-body {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 1348px;
+  
+}
+mat-form-field {
+    width: 100%;
+  }
+.action {
+  display: flex;
+  gap: 5px;
+}
+
+
+
+
+
+
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px !important;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-icon {
+  color: #3e75ff;
+}
+
+@media screen and (max-width: 960px) {
+  .mat-elevation-z8 {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  tbody {
+    display: block;
+    width: 100%;
+  }
+  
+  .mat-table {
+    background: transparent;
+    * {
+      box-sizing: border-box;
+    }
+
+    .mat-row {
+      display: block;
+      overflow: hidden;
+      height: auto;
+      position: relative;
+      clear: both;
+      box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+      background-color: #fff;
+      border-radius: 3px;
+      + .mat-row {
+        margin-top: 24px;
+      }
+    }
+
+    .mat-cell {
+      display: block;
+      width: 100%;
+      padding: 0 16px;
+      margin: 16px 0;
+      border: 0 none;
+      &:first-child {
+        padding: 0 48px 0 16px;
+        a {
+          font-size: 20px;
+          color: inherit;
+        }
+        &:before {
+          display: none;
+        }
+      }
+      &.m-card-sub-title {
+        margin-top: -8px;
+        padding: 0 48px 0 16px;
+        color: rgba(0,0,0,.54);
+      }
+    }
+
+    .has_label_on_mobile {
+      &:before {
+        content: attr(data-label);
+        display: inline;
+        font-weight: normal;
+      }
+    }
+
+    .mat-column-star {
+      width: auto;
+      padding: 8px 0 0 !important;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .mat-paginator {
+    margin-top: 24px;
+  }
+
+}

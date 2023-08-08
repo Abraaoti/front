@@ -1,4 +1,4 @@
-export interface Departamento {
-    id?: any;
-    nome: string;
+export class Departamento {
+    public id!: number;
+    public nome!: string;
 }

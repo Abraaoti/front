@@ -7,19 +7,15 @@ import { Departamento } from 'src/app/shared/models/departamento.model';
 import { DepartamentoService } from 'src/app/shared/models/services/departamento.service';
 
 @Component({
-  selector: 'app-departamento-create',
-  templateUrl: './departamento-create.component.html',
-  styleUrls: ['./departamento-create.component.css']
+    selector: 'app-departamento-create',
+    templateUrl: './departamento-create.component.html',
+    styleUrls: ['./departamento-create.component.css']
 })
 export class DepartamentoCreateComponent implements OnInit {
-    _departamentoForm: FormGroup;
-   
-    funcionario: Departamento = {
-        id: '',
-        nome: '',
-        
-    }
-    
+    departamentoForm: FormGroup;
+
+    public departamento!: Departamento;
+
     constructor(
         private ds: DepartamentoService,
         private location: Location,
@@ -28,9 +24,9 @@ export class DepartamentoCreateComponent implements OnInit {
         private _dialogRef: MatDialogRef<DepartamentoCreateComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
     ) {
-        this._departamentoForm = this._fb.group({
-            id: [this.funcionario.id],
-            nome: [this.funcionario.nome, [Validators.required, Validators.minLength(7)]],           
+        this.departamentoForm = this._fb.group({
+            id: [''],
+            nome: ['', [Validators.required, Validators.minLength(7)]],
 
         });
     }
@@ -39,19 +35,16 @@ export class DepartamentoCreateComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this._departamentoForm.patchValue(this.data)
-      
+        this.departamentoForm.patchValue(this.data)
 
 
     }
 
-    get departamento() {   
-         return this._departamentoForm.get('departamento');
-    }
+
 
     onCreate(): void {
-        if (this._departamentoForm.valid) {
-            this.ds.salvar(this._departamentoForm.value).subscribe(data => {                // this.router.navigate(["funcionarios/create"]);
+        if (this.departamentoForm.valid) {
+            this.ds.salvar(this.departamentoForm.value).subscribe(data => {                // this.router.navigate(["funcionarios/create"]);
                 this.ds.mensagem("Operação realizada com sucesso!");
                 this._dialogRef.close(true);
             }, err => {
@@ -64,7 +57,7 @@ export class DepartamentoCreateComponent implements OnInit {
         }
 
     }
-   
+
     onCancel() {
         this.location.back();
     }

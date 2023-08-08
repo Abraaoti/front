@@ -1,9 +1,6 @@
 <div mat-dialog-title>
     <h1>add funcionário</h1>
 </div >
-
-
-
 <form [formGroup]="funcionarioForm" (ngSubmit)="onCreate()"> 
 
 
@@ -29,11 +26,11 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>CPF</mat-label>
-                <input matInput formControlName="cpf" type="text"      placeholder="Ex. 29999-000">
+                <input matInput formControlName="cpf" type="text"      placeholder="Ex.: 999.999.999-00">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>RG</mat-label>
-                <input matInput formControlName="rg" type="text"     placeholder="Ex. r9898">
+                <input matInput formControlName="rg" type="text"     placeholder="Ex.: 9898">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Passaporte</mat-label>
@@ -58,11 +55,6 @@
         </div>
         <div class="row">
 
-
-            <mat-form-field appearance="outline">
-                <mat-label>Matrícula</mat-label>
-                <input matInput formControlName="matricula" type="text"     placeholder="Ex. 989808">
-            </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Salário</mat-label>
                 <input matInput formControlName="salario" type="text"     placeholder="00.888">
@@ -88,13 +80,23 @@
 
 
         <div class="row">
+
             <mat-form-field appearance="outline">
                 <mat-label>Selecione um departamento</mat-label>
                 <mat-select formControlName="departamento"  id="departamento" name="departamento" required>
-                    <mat-option *ngFor="let departamento of departamentos" [value]="departamento"> {{departamento.nome}}</mat-option>
+                    <mat-option *ngFor="let departamento of departamentos " [value]="departamento"> {{departamento.nome}}</mat-option>
                 </mat-select>
                 <!--mat-error *ngIf="departamento.hasError('required')">Please choose an animal</mat-error>
                 <mat-hint>{{departamento.value?.nome}}</mat-hint-->
+            </mat-form-field>   
+
+            <mat-form-field appearance="outline">
+                <mat-label>Selecione um cargo</mat-label>
+                <mat-select formControlName="cargo"  id="cargo" name="cargo" required>
+                    <mat-option *ngFor="let cargo of cargos" [value]="cargo" >
+                        {{cargo.nome}}
+                    </mat-option>
+                </mat-select>              
             </mat-form-field>        
 
         </div>     

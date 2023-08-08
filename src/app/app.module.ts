@@ -42,6 +42,8 @@ import { PessoaModule } from './pessoa/pessoa.module';
 import { LoginComponent } from './components/pages/login/login.component';
 import { DepartamentoReadComponent } from './pages/departamentos/departamento-read/departamento-read.component';
 import { DepartamentoCreateComponent } from './pages/departamentos/departamento-create/departamento-create.component';
+import { CargoReadComponent } from './pages/cargos/cargo-read/cargo-read.component';
+import { CargoCreateComponent } from './pages/cargos/cargo-create/cargo-create.component';
 
 @NgModule({
     declarations: [
@@ -60,6 +62,8 @@ import { DepartamentoCreateComponent } from './pages/departamentos/departamento-
         LoginComponent,
         DepartamentoReadComponent,
         DepartamentoCreateComponent,
+        CargoReadComponent,
+        CargoCreateComponent,
 
     ],
     imports: [

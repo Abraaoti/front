@@ -1,74 +1,62 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FuncionarioService } from 'src/app/pessoa/services/funcionario.service';
 import { Departamento } from 'src/app/shared/models/departamento.model';
 import { Funcionario } from 'src/app/shared/models/funcionario.model';
 import { DepartamentoService } from 'src/app/shared/models/services/departamento.service';
+import { Cargo } from 'src/app/shared/models/cargo.model';
+import { CargoService } from 'src/app/shared/models/services/cargo.service';
 @Component({
     selector: 'app-funcionario-create',
     templateUrl: './funcionario-create.component.html',
     styleUrls: ['./funcionario-create.component.css']
 })
 export class FuncionarioCreateComponent implements OnInit {
-    funcionarioForm: FormGroup;
-    _departamento!: Departamento;
-    funcionario: Funcionario = {
-        _id: '',
-        nome: '',
-        sobrenome: '',
-        nascimento: '',
-        cpf: '',
-        rg: '',
-        mae: '',
-        pai: '',
-        passaporte: '',
-        genero: '',
-        estado_civil: '',
-        naturalidade: '',
-        // admissao: '',
-        matricula: '',
-        //demissao: '',
-        salario: 0,
-        admissao: '',
-        departamento: this._departamento,
-        demissao: ''
-    }
-    generos!: string[];
+    public funcionarioForm: FormGroup;
+    public cargo!: Cargo;
+    public departamento!: Departamento;
+    public funcionario!: Funcionario;
 
+    ngDropdown = 1;
+
+    generos!: string[];
     estado_civil!: string[];
     departamentos: Departamento[] = [];
+    cargos: Cargo[] = [];
+
     constructor(
         private ds: DepartamentoService,
+        private cs: CargoService,
         private location: Location,
         private fs: FuncionarioService,
         private router: Router,
         private _fb: FormBuilder,
         private _dialogRef: MatDialogRef<FuncionarioCreateComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
+        @Inject(MAT_DIALOG_DATA)
+        public data: any,
     ) {
         this.funcionarioForm = this._fb.group({
-            id: [this.funcionario._id],
-            nome: [this.funcionario.nome, [Validators.required, Validators.minLength(7)]],
-            sobrenome: [this.funcionario.sobrenome, [Validators.required, Validators.minLength(7)]],
-            nascimento: [this.funcionario.nascimento, [Validators.required]],
-            cpf: [this.funcionario.cpf, [Validators.required, Validators.minLength(11)]],
-            rg: [this.funcionario.rg, [Validators.required, Validators.minLength(8)]],
-            mae: [this.funcionario.mae, [Validators.required, Validators.minLength(1)]],
-            pai: [this.funcionario.pai, [Validators.minLength(1)]],
-            passaporte: [this.funcionario.passaporte, [Validators.minLength(6)]],
-            genero: [this.funcionario.genero, [Validators.required]],
-            estado_civil: [this.funcionario.estado_civil, [Validators.required]],
-            naturalidade: [this.funcionario.naturalidade, [Validators.required]],
-            // admissao: '',
-            matricula: [this.funcionario.matricula, [Validators.required, Validators.minLength(3)]],
+            id: [''],
+            nome: ['', [Validators.required, Validators.minLength(7)]],
+            sobrenome: ['', [Validators.required, Validators.minLength(7)]],
+            nascimento: ['', [Validators.required]],
+            cpf: ['', [Validators.required, Validators.minLength(11)]],
+            rg: ['', [Validators.required, Validators.minLength(8)]],
+            mae: ['', [Validators.required, Validators.minLength(1)]],
+            pai: ['', [Validators.minLength(1)]],
+            passaporte: ['', [Validators.minLength(6)]],
+            genero: [null, [Validators.required]],
+            estado_civil: [null, [Validators.required]],
+            naturalidade: ['', [Validators.required]],
             //demissao: '',
-            salario: [this.funcionario.salario, [Validators.required, Validators.minLength(3)]],
-            admissao: [this.funcionario.admissao],
-            departamento: [this._departamento, [Validators.required]],
-            demissao: [this.funcionario.demissao],
+            salario: ['', [Validators.required, Validators.minLength(3)]],
+            admissao: [''],
+            demissao: [''],
+            departamento: this._fb.group(new Departamento),
+            cargo: this._fb.group(new Cargo)
 
         });
     }
@@ -81,18 +69,19 @@ export class FuncionarioCreateComponent implements OnInit {
         this.g();
         this.ec();
         this.d();
-
+        this.c();
 
     }
-
-    get departamento() {   
-         return this.funcionarioForm.get('departamento');
+    compareObjects(o1: any, o2: any): boolean {
+        return o1.nome === o2.nome && o1.id === o2.id;
     }
+
 
     onCreate(): void {
         if (this.funcionarioForm.valid) {
             this.fs.salvar(this.funcionarioForm.value).subscribe(data => {                // this.router.navigate(["funcionarios/create"]);
                 this.fs.mensagem("Operação realizada com sucesso!");
+                this.resetFuncionarioForm();
                 this._dialogRef.close(true);
             }, err => {
                 for (let i = 0; i < err.error.errors.length; i++) {
@@ -122,8 +111,20 @@ export class FuncionarioCreateComponent implements OnInit {
         }
         );
     }
+    c() {
+        this.cs.cargos().subscribe(data => {
+            this.cargos = data;
+        }
+        );
+    }
     onCancel() {
         this.location.back();
+        //this.funcionario;
+    }
+
+
+    resetFuncionarioForm() {
+        this.funcionarioForm.reset();
     }
 
 
