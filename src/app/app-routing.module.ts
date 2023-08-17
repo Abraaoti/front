@@ -8,13 +8,15 @@ import { PessoaReadComponent } from './pages/pessoas/pessoa-read/pessoa-read.com
 import { DepartamentoCreateComponent } from './pages/departamentos/departamento-create/departamento-create.component';
 import { DepartamentoReadComponent } from './pages/departamentos/departamento-read/departamento-read.component';
 import { CargoReadComponent } from './pages/cargos/cargo-read/cargo-read.component';
+import { AuthenticationGuard } from './auth/authentication.guard';
 
 const routes: Routes = [
+    { path: '', pathMatch: 'full', redirectTo: 'home' },
     {
         path: 'login', component: LoginComponent
     },
     {
-        path: '', component: NavComponent,
+        path: '', component: NavComponent,canActivate:[AuthenticationGuard],
         children: [
             {
                 path: 'home', component: HomeComponent

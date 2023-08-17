@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Credenciais } from 'src/app/shared/models/credenciais';
-import { AuthenticationService } from 'src/app/shared/models/services/authentication.service';
+import { AuthService } from 'src/app/shared/models/services/authentication.service';
 
 @Component({
     selector: 'app-login',
@@ -10,30 +11,51 @@ import { AuthenticationService } from 'src/app/shared/models/services/authentica
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    creds: Credenciais = {
-        email: '',
-        senha: ''
-    }
-    email = new FormControl(null, Validators.email);
-    senha = new FormControl(null, Validators.minLength(3));
-    authenticar = null;
+    public cadForm!: FormGroup;
+    public creds!: Credenciais;
+    public authenticar = null;
+    public token = null;
 
-    constructor(private auth: AuthenticationService) { }
+    constructor(
+        private auth: AuthService,
+        private fb: FormBuilder,
+        private router: Router
+
+    ) {
+        this.cadForm = this.fb.group({
+            username: ['', [Validators.required, Validators.minLength(3)]],
+            password: ['', [Validators.required, Validators.minLength(3)]],
+
+        });
+    }
 
 
     ngOnInit(): void {
 
+        this.cadForm.patchValue(this)
 
     }
     logar() {
-        this.auth.autenticar(this.creds).subscribe(response => {
-            //this.authenticar = response.headers.get('Authorization');
-            this.auth.successFullLogin(response.statusText);
-            this.auth.mensagem(response.statusText);
+
+        this.auth.autenticar(this.cadForm.value).subscribe((response: any) => {
+                      
+            this.auth.successFullLogin(response.token);
+            //this.auth.mensagem(response.token);
+            this.router.navigateByUrl('/home');
+
+        }, err => {
+            for (let i = 0; i < err.error.errors.length; i++) {
+                this.auth.mensagem(err.error.errors[i].message);
+                this.router.navigateByUrl('/login');
+            }
         }
         )
+
     }
+
+  
+
     validarCampos(): boolean {
-        return this.email.valid && this.senha.valid;
+        return this.cadForm.valid;// this.creds.email && this.creds.senha.;
     }
 }

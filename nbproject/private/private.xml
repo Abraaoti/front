@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/abraao/NetBeansProjects/sg/src/app/pessoa/services/funcionario.service.ts</file>
+            <file>file:/home/abraao/NetBeansProjects/sg/src/app/components/pages/login/login.component.ts</file>
+            <file>file:/home/abraao/NetBeansProjects/sg/src/app/shared/models/services/authentication.service.ts</file>
+            <file>file:/home/abraao/NetBeansProjects/sg/src/app/auth/authentication.guard.ts</file>
+            <file>file:/home/abraao/NetBeansProjects/sg/src/app/components/nav/nav.component.html</file>
         </group>
     </open-files>
 </project-private>

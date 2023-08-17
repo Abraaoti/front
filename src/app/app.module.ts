@@ -99,9 +99,10 @@ import { CargoCreateComponent } from './pages/cargos/cargo-create/cargo-create.c
         MatSnackBarModule,
         MatNativeDateModule,
         PessoaModule,
+        
     ],
     providers: [
-        LocalDateTimePipe
+        LocalDateTimePipe,
     ],
     bootstrap: [AppComponent]
 })

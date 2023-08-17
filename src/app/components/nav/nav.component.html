@@ -5,27 +5,27 @@
             <a routerLink="home" mat-list-item routerLinkActive="selected">
                 <i class="material-icons">home</i>home
             </a>
-
-            <a mat-list-item routerLink="/documentos"  ><i class="material-icons">admin_panel_settings</i>   Documentos  </a>
-            <a mat-list-item routerLink="/gestao"  > Gestão  </a>
-
-            <a mat-list-item routerLink="/organigrama"  >  <i class="material-icons">manage_accounts</i>  organigrama  </a>
-            <a mat-list-item routerLink="/projetos"  > Projetos  </a>
-            <a mat-list-item routerLink="/contratos"  > Contratos  </a>
-
+            <a mat-list-item routerLink="/documentos"  >
+                <i class="material-icons">admin_panel_settings</i>   Documentos  
+            </a>
+           
+            <a mat-list-item routerLink="/organigrama"  >
+                <i class="material-icons">manage_accounts</i>  organigrama 
+            </a>
+            
             <a mat-list-item routerLink="/pagar"  routerLinkActive="selected">
-                <i class="material-icons">account_balance</i> 
-                pagar  </a>
+                <i class="material-icons">account_balance</i>pagar 
+            </a>
             <a mat-list-item routerLink="/receber"   routerLinkActive="selected">
-                  <i class="material-icons">account_balance_wallet</i> 
-                receber  </a>
+                <i class="material-icons">receipt</i>receber 
+            </a>
             <a mat-list-item routerLink="/contratos"  routerLinkActive="selected">
-                 <i class="material-icons">list</i>      
+                <i class="material-icons">list</i>      
                 Contratos  </a>
             <a mat-list-item routerLink="/nf"  routerLinkActive="selected">
-                 <i class="material-icons">list</i>      
-                NFs </a>
-
+                <i class="material-icons">list</i>      
+                NFs 
+            </a>
             <a mat-list-item routerLink="/pessoas"  routerLinkActive="selected">
                 <i class="material-icons">person</i> 
                 Funionários 
@@ -35,30 +35,22 @@
                 Cargos 
             </a>
             <a mat-list-item routerLink="/departamentos" routerLinkActive="selected">
-                <i class="material-icons">list</i>             
-                
+                <i class="material-icons">list</i>           
+
                 Departamentos 
             </a>
             <a mat-list-item routerLink="/fp"  routerLinkActive="selected">
-                 <i class="material-icons">insert_chart</i> 
-                Folha de Pagamento </a>
+                <i class="material-icons">insert_chart</i> 
+                Folha de Pagamento
+            </a>
 
             <a mat-list-item routerLink="/usuarios"  > 
                 <i class="material-icons">account_circle</i>Usuários 
             </a>
-
-
-            <a routerLink="/" mat-list-item routerLinkActive="selected">
+            <a  mat-list-item routerLinkActive="selected" (click)="logout()">
                 <i class="material-icons">logout</i>Logout
             </a>
-
         </mat-nav-list>
-
-
-
-
-
-
 
     </mat-drawer>
 
