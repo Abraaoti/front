@@ -44,6 +44,8 @@ import { DepartamentoReadComponent } from './pages/departamentos/departamento-re
 import { DepartamentoCreateComponent } from './pages/departamentos/departamento-create/departamento-create.component';
 import { CargoReadComponent } from './pages/cargos/cargo-read/cargo-read.component';
 import { CargoCreateComponent } from './pages/cargos/cargo-create/cargo-create.component';
+import { AuthService } from './shared/models/services/authentication.service';
+import { PrincipalComponent } from './pages/compartilhado/principal/principal.component';
 
 @NgModule({
     declarations: [
@@ -64,6 +66,7 @@ import { CargoCreateComponent } from './pages/cargos/cargo-create/cargo-create.c
         DepartamentoCreateComponent,
         CargoReadComponent,
         CargoCreateComponent,
+        PrincipalComponent,
 
     ],
     imports: [
@@ -103,6 +106,7 @@ import { CargoCreateComponent } from './pages/cargos/cargo-create/cargo-create.c
     ],
     providers: [
         LocalDateTimePipe,
+        AuthService,
     ],
     bootstrap: [AppComponent]
 })

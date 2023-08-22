@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import * as moment from 'moment';
-import { catchError, first, map, Observable, throwError } from 'rxjs';
+import { catchError, first, map, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Credenciais } from '../credenciais';
 
@@ -12,38 +12,53 @@ import { Credenciais } from '../credenciais';
 })
 export class AuthService {
     jwtService = JwtHelperService;
-    
-    headers = new HttpHeaders().set('Content-Type', 'application/json');
-    currentUser = {};
-    authenticated = false;
-    private baseUrl = environment.apiUrl + "api/auth/";
-    constructor(private http: HttpClient, private _sbar: MatSnackBar) { }
 
-    autenticar(creds: Credenciais) {
+    private authUrl = environment.apiUrl + "api/auth/";
+    private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        return this.http.post(this.baseUrl + 'authenticate', creds, { headers: this.headers }).pipe(
-            map((res) => {
-                return res || {};
-            }),
-            catchError(this.handleError)
+    constructor(private http: HttpClient, private _sbar: MatSnackBar, private router: Router) { }
+
+    login(creds: Credenciais): Observable<any> {
+        return this.http.post(this.authUrl + 'authenticate', JSON.stringify(creds), { headers: this.headers }).pipe(tap((resposta: any) => {
+
+            if (resposta !== null) {
+                console.log(resposta)
+                localStorage.setItem('token', btoa(JSON.stringify(resposta.token)));
+                this.successFullLogin(btoa(JSON.stringify(resposta.token)));
+                localStorage.setItem('usuario', btoa(JSON.stringify(creds)));
+                this.router.navigate(['']);
+                return true;
+
+            } else {
+                return false;
+                this.mensagem('Nome  ou senha incorreta!');
+            }
+
+
+        }, err => {
+
+            for (let i = 0; i < err.error.errors.length; i++) {
+                this.mensagem(err.error.errors[i].message);
+                this.router.navigate(['/login']);
+            }
+        }
+
+        )
         );
-        //return this.http.post(this.baseUrl + 'authenticate', creds).pipe(first());
+
     }
-    isAutenticar() {
+    isAutenticar(): boolean {
         let token = localStorage.getItem('token');
-        if (token != null) {
-            return !this.autenticar.prototype(token)
+        if (token !== null) {
+            return true;
         }
         return false;
+
     }
     successFullLogin(authToken: string) {
         localStorage.setItem('token', authToken);
     }
-    logout() {
-        localStorage.removeItem("id_token");
-        localStorage.removeItem("expires_at");
-        localStorage.clear;
-    }
+
     mensagem(msg: string): void {
         this._sbar.open(msg, '', {
             horizontalPosition: 'end',
@@ -52,38 +67,55 @@ export class AuthService {
 
         });
     }
-    getToken() {
-        return localStorage.getItem('access_token');
+    getToken(): string {
+        var token = (localStorage.getItem('token') as unknown as Credenciais).username;
+        if (token !== null) {
+            return token;
+        }
+        return token ? token : "";
     }
-    get isLoggedIn(): boolean {
-        let authToken = localStorage.getItem('access_token');
-        return authToken !== null ? true : false;
+    get logado(): boolean {
+        return localStorage.getItem('token') ? true : false;
     }
-   
-    // User profile
-    getUserProfile(id: any): Observable<any> {
-        let api = `${this.baseUrl}/user-profile/${id}`;
-        return this.http.get(api, { headers: this.headers }).pipe(
-            map((res) => {
-                return res || {};
-            }),
-            catchError(this.handleError)
-        );
+
+
+    logout(): void {
+
+        localStorage.clear();
+        this.router.navigate(['login']);
+        localStorage.removeItem("id_token");
+        localStorage.removeItem("expires_at");
+        localStorage.removeItem('token');
     }
+
+
     // Error
     handleError(error: HttpErrorResponse) {
         let msg = '';
         if (error.error instanceof ErrorEvent) {
             // client-side error
-            msg = error.error.message;
+            //msg = error.error.message;
+            this.mensagem(error.error.message)
         } else {
             // server-side error
             msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+            this.mensagem(msg)
         }
-        return throwError(msg);
+        return throwError(this.mensagem(msg));
     }
-    
-     clean(): void {
+
+    clean(): void {
         window.sessionStorage.clear();
     }
+
+  obterUsuarioLogado(): string {
+     
+      let usuario = localStorage.getItem('usuario');
+        if (usuario !== null) {
+            return usuario;
+        }
+        return usuario ? usuario : "";
+     
+  }
+
 }

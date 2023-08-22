@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/shared/models/services/authentication.servi
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+    loading = false;
+    error = '';
     public cadForm!: FormGroup;
     public creds!: Credenciais;
     public authenticar = null;
@@ -36,24 +38,34 @@ export class LoginComponent implements OnInit {
 
     }
     logar() {
+        this.loading = true;
+        if (this.cadForm.invalid) return;
+        var creds = this.cadForm.getRawValue() as Credenciais;
+        this.auth.login(creds).subscribe(response => {
 
-        this.auth.autenticar(this.cadForm.value).subscribe((response: any) => {
-                      
-            this.auth.successFullLogin(response.token);
-            //this.auth.mensagem(response.token);
-            this.router.navigateByUrl('/home');
 
-        }, err => {
-            for (let i = 0; i < err.error.errors.length; i++) {
-                this.auth.mensagem(err.error.errors[i].message);
-                this.router.navigateByUrl('/login');
+            if (response !== null) {
+                return true;
+
+            } else {
+                return false;
             }
+
+
+
+
         }
         )
 
     }
 
-  
+
+    logout(): void {
+        // clear token remove user from local storage to log user out
+        localStorage.removeItem('token');
+    }
+
+
 
     validarCampos(): boolean {
         return this.cadForm.valid;// this.creds.email && this.creds.senha.;
